@@ -1,29 +1,37 @@
+import { useHistory } from 'react-router-dom';
 
 const ProfileSettings = () => {
+    let history = useHistory();
+
     return (
-        <div className="profileSettings-page">            
-            <div class="form-body">
-                <h2>Profile <span>settings</span></h2>
-                <p>Change your profile settings</p>
-                
-                <p>Email</p>
-                <input type="email" class="credentials-input" placeholder="Email" />
+        <div className="profileSettings-page">
+            <div class="row contentBody">
+                <div class="col-4"></div>
+                <div class="col-4">
+                    <h2>Profile <span>settings</span></h2>
+                    <p>Change your profile settings</p>
 
-                <p>First Name</p>
-                <input type="text" class="credentials-input-short" placeholder="First Name" />
+                    <p>Email</p>
+                    <input type="email" class="form-control" placeholder="Email" />
 
-                <p>Last Name</p>
-                <input type="text" class="credentials-input-short" placeholder="Last Name" />
-                
-                <p>Password</p>
-                <input type="password" class="credentials-input" placeholder="Password" />
+                    <p>First Name</p>
+                    <input type="text" class="form-control" placeholder="First Name" />
 
-                <p>Confirm Password</p>
-                <input type="password" class="credentials-input" placeholder="Confirm Password" />
-                
-                <input type="submit" class="top-button" value="Submit" />
+                    <p>Last Name</p>
+                    <input type="text" class="form-control" placeholder="Last Name" />
+
+                    <p>Password</p>
+                    <input type="password" class="form-control" placeholder="Password" />
+
+                    <p>Confirm Password</p>
+                    <input type="password" class="form-control" placeholder="Confirm Password" />
+
+                    <input type="submit" class="btn btn-primary confirmButton" value="Submit" />
+                    <input type="submit" class="btn btn-primary confirmButton" value="Cancel" onClick={() => history.push('/profile')}/>
+                </div>
+                <div class="col-4"></div>
             </div>
-            
+
         </div>
     );
 }

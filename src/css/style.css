@@ -1,179 +1,71 @@
-.top-button{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 8px 16px;
-
-    position: static;
-    width: 137px;
-    height: 40px;
-    left: 0px;
-    top: 0px;
-
-    color:white;
-    background: linear-gradient(257.39deg, #EFB467 0%, #DE8667 100%);
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 32px;
-
-    flex: none;
-    order: 0;
-    flex-grow: 0;
-    margin: 0px 31px;
-
+.topButton{
+    position: absolute;
+    top:20px;
+    right:20px;
 }
 
-h2{
-    position: static;
-    width: 420px;
-    height: 41px;
-    left: 0px;
-    top: 13.5px;
-    
-    font-family: Raleway;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 35px;
-    line-height: 41px;
+.quotasticHeader{
+    position: absolute;
+    top:20px;
+    left:20px;
+}
 
+.contentBody{
+    padding-top:100px;
+    justify-content: center;
+}
+
+.confirmButton{
+    margin-top:10px;
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+}
+
+.center {
     text-align: center;
-    letter-spacing: 0.25px;
-
-    color: #322D38;
-
-    flex: none;
-    order: 0;
-    align-self: stretch;
-    flex-grow: 0;
-    margin: 8px 0px;  
 }
 
-.credentials-input{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 8px 30px 8px 24px;
-
-    position: static;
-    width: 420px;
-    height: 40px;
-    left: 0px;
-    top: 0px;
-
-    background: #FFFFFF;
-
-    border: 2px solid #DE8667;
-    border-radius: 32px;
-
-    flex: none;
-    order: 0;
-    align-self: stretch;
-    flex-grow: 0;
-    margin: 22px 0px;
+.quoteKarma{
+    box-shadow: 5px 5px 15px #888888;
+    border-radius: 20px;
+    height: 80px;
 }
 
-.button-input{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 8px 16px;
-
-    position: static;
-    width: 420px;
-    height: 40px;
-    left: 0px;
-    top: 156px;
-
-    background: #FFFFFF;
-
-    border: 2px solid #DE8667;
-    box-sizing: border-box;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 32px;
-
-    flex: none;
-    order: 2;
-    align-self: stretch;
-    flex-grow: 0;
-    margin: 16px 0px;
+h5{
+    padding-top:10px;
 }
 
-.credentials-input-short{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 8px 30px 8px 24px;
-
-    position: static;
-    width: 202px;
-    height: 40px;
-    left: 0px;
-    top: 0px;
-
-    background: #FFFFFF;
-
-    border: 2px solid #DE8667;
-    border-radius: 32px;
-
-    flex: none;
-    order: 0;
-    align-self: stretch;
-    flex-grow: 0;
-    margin: 22px 0px;
+.topCurveBackground{
+    width: 101% !important;
+    height: 250px !important;
 }
 
-span{
-    color:#DE8667;
+.TopHrefLinks a, .TopHrefLinks img{
+    position: absolute;
+    top:20px;
+    right:20px;
+    text-decoration: none;
+    color:white;
 }
 
-.quote{
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    padding: 16px 24px;
-
-    position: static;
-    width: 529px;
-    height: 124px;
-    left: 0px;
-    top: 127px;
-
-    background: #FFFFFF;
-
-    border: 2px solid #DE8667;
-    border-radius: 16px;
-
-    flex: none;
-    order: 1;
-    align-self: stretch;
-    flex-grow: 0;
-    margin: 32px 0px;
+.TopHrefLinks a{
+    margin-top:15px;
 }
 
-a{
-    padding-left: 20px;
+.smallImg{
+    width: 50px;
+    height: 50px;
 }
 
-.quote-stats{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 16px 24px 16px 16px;
+.smallImg:hover{
+    cursor: pointer;
+}
 
-    position: static;
-    width: 420px;
-    height: 123px;
-    left: 0px;
-    top: 0px;
-
-    background: #FFFFFF;
-    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15);
-    border-radius: 8px;
-
-    flex: none;
-    order: 0;
-    align-self: stretch;
-    flex-grow: 0;
-    margin: 19px 0px;
+html{
+    width: 99%;
 }

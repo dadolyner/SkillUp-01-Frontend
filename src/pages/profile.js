@@ -1,27 +1,52 @@
+import Avatar from "../multimedia/Avatar.png";
+import Quote from "../multimedia/CreateQuote.png";
+import TopCurve from "../multimedia/ProfileTopCurve.png";
+import { useHistory } from 'react-router-dom';
 
 const Profile = () => {
+    let history = useHistory();
+
     return (
         <div className="profile-page">
-            <div class="login-header">
-                <h3>Quotastic</h3>
-                <a href="/">Home</a>
-                <a href="/profile-settings">Settings</a>
-                <a href="/">Logout</a>
-            </div>
-
-            <div class="profile-name">
-                 <h1>David Škulj</h1>
-                 <div class="quote-karma">
-                     <p>Quotastic karma</p>
-                     <p>100</p>
-                 </div>
-            </div>
-
-            <div class="MyQuote">
-                <h3>Quote</h3>
-                <div class="quote-stats">
-                All our dreams can come true, if we have the courage to pursue them.
+            <img src={TopCurve} class="topCurveBackground" alt="" />
+            <div class="row">
+                <div class="col-2"><h3 class="quotasticHeader" style={{ "color": "white" }}>Quotastic</h3></div>
+                <div class="col-8"></div>
+                <div class="col-2 TopHrefLinks">
+                    <a href="/" style={{ "margin-right": "300px" }}>Home</a>
+                    <a href="/profile-settings" style={{ "margin-right": "220px" }}>Settings</a>
+                    <a href="/" style={{ "margin-right": "140px" }}>Logout</a>
+                    <img src={Avatar} class="smallImg" style={{ "margin-right": "70px" }} alt="" />
+                    <img src={Quote} class="smallImg" style={{ "margin-right": "10px" }} alt="" onClick={() => history.push('/create-quote')} />
                 </div>
+            </div>
+
+            <div class="profileOverImage">
+                <div class="row overProfile">
+                    <div class="col-4"></div>
+                    <div class="col-4">
+                        <img src={Avatar} alt="" />
+                        <h1 class="center">David Škulj</h1>
+                    </div>
+                    <div class="col-4"></div>
+                </div>
+
+                <div class="row">
+                    <div class="col-4"></div>
+                    <div class="col-4">
+                        <div class="quoteKarma center">
+                            <h5>Quote Karma</h5>
+                            <h6>100</h6>
+                        </div>
+                    </div>
+                    <div class="col-4"></div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-4"></div>
+                <div class="col-4"> </div>
+                <div class="col-4"></div>
             </div>
         </div>
     );
