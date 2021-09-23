@@ -13,11 +13,11 @@ const Profile = () => {
                 <div class="col-2"><h3 class="quotasticHeader" style={{ "color": "white" }}>Quotastic</h3></div>
                 <div class="col-8"></div>
                 <div class="col-2 TopHrefLinks">
-                    <a href="/" style={{ "margin-right": "300px" }}>Home</a>
-                    <a href="/profile-settings" style={{ "margin-right": "220px" }}>Settings</a>
-                    <a href="/" style={{ "margin-right": "140px" }}>Logout</a>
-                    <img src={Avatar} class="smallImg" style={{ "margin-right": "70px" }} alt="" />
-                    <img src={Quote} class="smallImg" style={{ "margin-right": "10px" }} alt="" onClick={() => history.push('/create-quote')} />
+                    <a href="/" style={{ "marginRight": "300px" }}>Home</a>
+                    <a href="/profile-settings" style={{ "marginRight": "220px" }}>Settings</a>
+                    <a href="/" style={{ "marginRight": "140px" }}>Logout</a>
+                    <img src={Avatar} class="smallImgHeader" style={{ "marginRight": "70px" }} alt="" onClick={() => history.push('/profile')}/>
+                    <img src={Quote} class="smallImgHeader" style={{ "marginRight": "10px" }} alt="" onClick={() => history.push('/create-quote')} />
                 </div>
             </div>
 
