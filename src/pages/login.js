@@ -12,7 +12,7 @@ const Login = () => {
 
     const loginFunction = async() => {
         await axios.post('/auth/login', {email, password})
-        .then(response => {        
+        .then(() => {        
             history.push('/profile')
         })
     }

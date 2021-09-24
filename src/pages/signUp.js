@@ -17,7 +17,7 @@ const SignUp = () => {
     const signUpFunction = async() => {
         if(password === confirmPassword){
             await axios.post('/auth/signup', {first_name, last_name, email, username, password, confirmPassword})
-            .then(response => {
+            .then(() => {
                 history.push('/login')
             })
         } else {
