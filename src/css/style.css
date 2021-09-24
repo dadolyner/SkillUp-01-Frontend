@@ -37,7 +37,7 @@ img {
 }
 
 .headerQuotes{
-    float:right;
+    justify-content: center;
     box-shadow: 2px 2px 10px #888888;
     border-radius: 20px;
     width:400px !important;
@@ -46,6 +46,7 @@ img {
 }
 
 .headerQuoteText{
+    font-size: 12px;
     width: 90%;
     height: 100%;
 }
@@ -56,10 +57,6 @@ img {
     height: 100%;
     text-align: center;
     padding-top:60px;
-}
-
-.headerQUoteText{
-    font-size: 12px;
 }
 
 h5{
