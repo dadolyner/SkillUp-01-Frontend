@@ -1,13 +1,20 @@
 import { useHistory } from 'react-router-dom';
 import Avatar from "../multimedia/Avatar.png";
 import Quote from "../multimedia/CreateQuote.png";
+import axios from '../api/axios'
+import { useState } from 'react';
 
-let isLoggedIn = false;
 const Home = () => {
     let history = useHistory();
+    const [quotes, setQuotes] = useState([])
+
+    const output = async() => {
+        axios.get('/user/allQuotes').then(response => setQuotes(response.data))
+    }
+    output();
 
     //user is not logged in
-    if (!isLoggedIn) {
+    if (!localStorage.getItem('userLoggedIn')) {
         return (
             <div className="main-page">
                 <div className="row">
@@ -35,7 +42,7 @@ const Home = () => {
                         </div>
                         <div className="headerQuoteText">
                             <h5><span className="headerQuoteText">Twenty years from now you will be more disappointed by the things that you didn't do than by the ones you did do. So throw off the bowlines. Sail away from the safe harbor. Catch the trade winds in your sails. Explore. Dream. Discover.</span></h5>
-                            <img src={Avatar} alt="" className="smallImg" /><h6>Islam Mušić</h6>
+                            <img src={Avatar} alt="" className="smallImg" /><h6>Janez Novak</h6>
                         </div>
                     </div>
                 </div>
@@ -55,6 +62,19 @@ const Home = () => {
                         <p>Most upvoted quotes on the platform. Sign up or login to like the quotes and keep them saved in your profile</p>
                     </div>
                     <div className="col-4"></div>
+
+                    {quotes.map(quote => (
+                        <div key={quote.id} className="col-5 headerQuotes">
+                            <div className="headerVotes">
+                                <h4>0</h4>
+                            </div>
+
+                            <div className="headerQuoteText">
+                                <h5><span className="headerQuoteText">{quote.quote}</span></h5>
+                                <img src={Avatar} alt="" className="smallImg" /><h6>Janez Novak</h6>
+                            </div>
+                        </div>
+                    ))}
                 </div>
             </div>
         );
@@ -63,7 +83,7 @@ const Home = () => {
     //user is logged in
     else {
         return (
-            <div classNameName="main-page">
+            <div className="main-page">
                 <div className="row">
                     <div className="col-2"><h3 className="quotasticHeader">Quotastic</h3></div>
                     <div className="col-8"></div>
@@ -85,7 +105,7 @@ const Home = () => {
                     <div className="col-4"></div>
                 </div>
 
-                <div className="row" style={{"padding-top":"20px"}}>
+                <div className="row" style={{"paddingTop":"20px"}}>
                     <div className="col-4"></div>
                     <div className="col-4 headerQuotes">
                         <div className="headerVotes">

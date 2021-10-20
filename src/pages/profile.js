@@ -25,7 +25,7 @@ const Profile = () => {
                 <div className="row overProfile">
                     <div className="col-4"></div>
                     <div className="col-4">
-                        <img src={Avatar} alt="" />
+                        <img src={Avatar} alt="" style={{"width": "150px"}}/>
                         <h1 className="center">David Škulj</h1>
                     </div>
                     <div className="col-4"></div>

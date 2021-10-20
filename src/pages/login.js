@@ -12,9 +12,16 @@ const Login = () => {
 
     const loginFunction = async() => {
         await axios.post('/auth/login', {email, password})
-        .then(() => {        
+        .then(response => {    
+            let accessToken = response.data.accesToken
+            let isUserLoggedIn = true;
+            localStorage.setItem('accessToken', accessToken)
+            localStorage.setItem('userLoggedIn', isUserLoggedIn)
             history.push('/profile')
         })
+        .catch(error => {
+            console.log(error)
+        }, [])
     }
 
     return (
@@ -28,8 +35,8 @@ const Login = () => {
             <div className="row contentBody">
                 <div className="col-4"></div>
                 <div className="col-4">
-                    <h2 style={{"text-align": "center"}}>Welcome <span className="orangeText">back</span></h2>
-                    <p style={{"text-align": "center"}}>Thank you for comming back. Hope you gave a good day and inspire others.</p>
+                    <h2 style={{"textAlign": "center"}}>Welcome <span className="orangeText">back</span></h2>
+                    <p style={{"textAlign": "center"}}>Thank you for comming back. Hope you gave a good day and inspire others.</p>
 
                     <p>Email</p>
                     <input type="email" className="form-control inputField" placeholder="Email" value={email} onChange={(e)=>setEmail(e.target.value)}/>

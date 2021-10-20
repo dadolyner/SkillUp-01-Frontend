@@ -36,8 +36,8 @@ const SignUp = () => {
             <div className="row contentBody">
                 <div className="col-4"></div>
                 <div className="col-4">
-                    <h2 style={{ "text-align": "center" }}>What is your <span className="orangeText">name?</span></h2>
-                    <p style={{ "text-align": "center" }}>Your name will appear on quotes and your public profile.</p>
+                    <h2 style={{ "textAlign": "center" }}>What is your <span className="orangeText">name?</span></h2>
+                    <p style={{ "textAlign": "center" }}>Your name will appear on quotes and your public profile.</p>
 
                     <img src={Avatar} alt="" style={{ "width": "150px" }} />
                     <p>Email</p>
