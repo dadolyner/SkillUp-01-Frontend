@@ -1,10 +1,10 @@
 import {Route} from 'react-router-dom'
-import Home from './pages/home'
-import Login from './pages/login'
-import CreateQuote from './pages/createQuote'
+import Home from './pages/home.tsx'
+import Login from './pages/login.tsx'
+import CreateQuote from './pages/createQuote.tsx'
 import Profile from './pages/profile'
-import ProfileSettings from './pages/profileSettings'
-import SignUp from './pages/signUp'
+import ProfileSettings from './pages/profileSettings.tsx'
+import SignUp from './pages/signUp.tsx'
 
 const App = () => {
   return (
