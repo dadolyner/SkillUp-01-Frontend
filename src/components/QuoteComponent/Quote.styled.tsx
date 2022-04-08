@@ -6,7 +6,8 @@ export const CardContainer = styled.div`
     border-radius: 10px;
     box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.3);
     height: 150px;
-    width: 300px;
+    max-width: 300px;
+    min-width: 300px;
     display: flex;
     flex-direction: row;
     font-family: Poppins;
@@ -34,6 +35,7 @@ export const UpArrow = styled.div`
     &.upVoted {
         border-right: 0.2em solid #EFB467;
         border-top: 0.2em solid #EFB467;
+        pointer-events: none;
     }
 `;
 export const Score = styled.div`
@@ -54,6 +56,7 @@ export const DownArrow = styled.div`
     &.downVoted {
         border-right: 0.2em solid #EFB467;
         border-top: 0.2em solid #EFB467;
+        pointer-events: none;
     }
 `;
 
@@ -65,7 +68,6 @@ export const CardRight = styled.div`
 export const QuoteText = styled.div`
     position: absolute;
     vertical-align: center;
-    font-size: 10px;
     padding: 15px;
 `;
 

@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { FormContainer, Label, Input, ConfirmButton, HalfGrid, LinkContainer, Link } from '../components/FormComponent/Form.styled';
 import axios from '../api/axios'
 
 const SignUp: React.FC = () => {
-    let history = useHistory();
+    let navigate = useNavigate();
 
     const [first_name, setFirstName] = React.useState('')
     const [last_name, setLastName] = React.useState('')
@@ -17,7 +17,7 @@ const SignUp: React.FC = () => {
         if(password === confirmPassword){
             await axios.post('/auth/signup', {first_name, last_name, email, username, password, confirmPassword})
             .then(() => {
-                history.push('/login')
+                navigate('/login')
             })
         } else {
             return
@@ -59,7 +59,7 @@ const SignUp: React.FC = () => {
 
                     <LinkContainer>
                         <p>Already have an account?</p>
-                        <Link onClick={() => history.push('/login')}>LogIn</Link>
+                        <Link onClick={() => navigate('/login')}>LogIn</Link>
                     </LinkContainer>
                 </div>
             </FormContainer>

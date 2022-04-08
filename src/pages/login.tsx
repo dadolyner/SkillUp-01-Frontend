@@ -1,26 +1,31 @@
 import '../css/style.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import * as React from 'react';
 import axios from '../api/axios';
 import { FormContainer, Label, Input, ConfirmButton, LinkContainer, Link } from '../components/FormComponent/Form.styled';
 
 const Login: React.FC = () => {
-	let history = useHistory();
+	let navigate = useNavigate();
 
 	const [email, setEmail] = React.useState('');
 	const [password, setPassword] = React.useState('');
 
 	const loginFunction = async () => {
-		const loginResponse = await axios.post('/auth/login', { email, password });
-		let accessToken: string = loginResponse.data.accesToken;
-		let isUserLoggedIn: string = 'true';
-		localStorage.setItem('accessToken', accessToken);
-		localStorage.setItem('userLoggedIn', isUserLoggedIn);
-		const userInfoResponse = await axios.get('/user/me', { headers: { Authorization: `Bearer ${accessToken}` } });
-		let userInfo = userInfoResponse.data.user;
-		localStorage.setItem('userInfo', JSON.stringify(userInfo));
-		history.push('/profile');
+		localStorage.clear();
+		try {
+			const loginResponse = await axios.post('/auth/login', { email, password });
+			let accesToken: string = loginResponse.data.accesToken;
+			let isUserLoggedIn: string = 'true';
+			localStorage.setItem('accessToken', accesToken);
+			localStorage.setItem('userLoggedIn', isUserLoggedIn);
+			const userInfoResponse = await axios.get('/user/me', { headers: { Authorization: `Bearer ${accesToken}` } });
+			console.log(userInfoResponse);
+			localStorage.setItem('userInfo', JSON.stringify(userInfoResponse.data));
+		} catch (e) {
+			console.log(e);
+		}
+		if (localStorage.getItem('userLoggedIn') === 'true') navigate('/profile');
 	};
 
 	return (
@@ -41,11 +46,11 @@ const Login: React.FC = () => {
 					<Input type={'password'} placeholder={'Password'} value={password} onChange={(e) => setPassword(e.target.value)} />
 
 					<ConfirmButton onClick={() => loginFunction()}>Login</ConfirmButton>
-				
+
 					<LinkContainer>
-                        <p>Dont have an account?</p>
-                        <Link onClick={() => history.push('/signup')}>SignUp</Link>
-                    </LinkContainer>
+						<p>Dont have an account?</p>
+						<Link onClick={() => navigate('/signup')}>SignUp</Link>
+					</LinkContainer>
 				</div>
 			</FormContainer>
 		</div>

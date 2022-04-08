@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { FormContainer, Label, Input, ConfirmButton, HalfGrid} from '../components/FormComponent/Form.styled';
 import axios from '../api/axios'
 
@@ -13,15 +13,13 @@ const ProfileSettings: React.FC = () => {
     const changeSettingsFunction = async () => {
         if (password === confirmPassword) {
             await axios.post('/auth/signup', { first_name, last_name, email, password, confirmPassword })
-                .then(() => {
-                    history.push('/login')
-                })
+            navigate('/login')
         } else {
             return
         }
     }
     
-    let history = useHistory();
+    let navigate = useNavigate();
 
     return (
         <div style={{marginTop: '100px'}}>

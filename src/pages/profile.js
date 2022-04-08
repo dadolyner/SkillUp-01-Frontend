@@ -1,10 +1,10 @@
 import Avatar from "../multimedia/Avatar.png";
 import Quote from "../multimedia/CreateQuote.png";
 import TopCurve from "../multimedia/ProfileTopCurve.png";
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Profile = () => {
-    let history = useHistory();
+    let navigate = useNavigate();
 
     return (
         <div className="profile-page">
@@ -16,8 +16,8 @@ const Profile = () => {
                     <a href="/" style={{ "marginRight": "300px" }}>Home</a>
                     <a href="/profile-settings" style={{ "marginRight": "220px" }}>Settings</a>
                     <a href="/" style={{ "marginRight": "140px" }}>Logout</a>
-                    <img src={Avatar} className="smallImgHeader" style={{ "marginRight": "70px" }} alt="" onClick={() => history.push('/profile')}/>
-                    <img src={Quote} className="smallImgHeader" style={{ "marginRight": "10px" }} alt="" onClick={() => history.push('/create-quote')} />
+                    <img src={Avatar} className="smallImgHeader" style={{ "marginRight": "70px" }} alt="" onClick={() => navigate('/profile')}/>
+                    <img src={Quote} className="smallImgHeader" style={{ "marginRight": "10px" }} alt="" onClick={() => navigate('/create-quote')} />
                 </div>
             </div>
 
