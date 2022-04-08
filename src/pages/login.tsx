@@ -20,7 +20,6 @@ const Login: React.FC = () => {
 			localStorage.setItem('accessToken', accesToken);
 			localStorage.setItem('userLoggedIn', isUserLoggedIn);
 			const userInfoResponse = await axios.get('/user/me', { headers: { Authorization: `Bearer ${accesToken}` } });
-			console.log(userInfoResponse);
 			localStorage.setItem('userInfo', JSON.stringify(userInfoResponse.data));
 		} catch (e) {
 			console.log(e);
