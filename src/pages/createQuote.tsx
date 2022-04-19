@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from '../api/axios';
 import { FormContainer, TextArea, ConfirmButton, CancelButton } from '../components/FormComponent/Form.styled';
+import UpdateUserInfo from '../components/UpdateUserInfo';
 
 const CreateQuote: React.FC = () => {
 	const navigate = useNavigate();
@@ -13,12 +14,14 @@ const CreateQuote: React.FC = () => {
 	};
 	React.useEffect(() => {
 		checkUserInfo();
+		UpdateUserInfo();
 	}, []);
 
 	const createQuoteFunction = async () => {
-		await axios.post('/quote/myquote', { quote }, { headers: { Authorization: `Bearer ${localStorage.getItem('accessToken')}` } }).then(() => {
-			navigate('/myquotes');
-		});
+		await axios.post('/quote/myquote', { quote }, { headers: { Authorization: `Bearer ${localStorage.getItem('accessToken')}` } })
+			.catch((error) => { if (error.response.status === 401) { navigate('/login') } });
+		
+		await UpdateUserInfo();
 	};
 
 	return (
@@ -36,7 +39,7 @@ const CreateQuote: React.FC = () => {
 
 					<div style={{ gridColumn: '2' }}>
 						<div style={{ display: 'grid', gridTemplateColumns: '20% 2% 20% 58%' }}>
-							<ConfirmButton onClick={() => createQuoteFunction()}>Submit</ConfirmButton>
+							<ConfirmButton onClick={() => {createQuoteFunction(); navigate('/profile');} }>Submit</ConfirmButton>
 							<div></div>
 							<CancelButton onClick={() => navigate('/profile')}>Cancel</CancelButton>
 							<div></div>

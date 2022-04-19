@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { CardContainer, CardLeft, UpArrow, Score, DownArrow, CardRight, QuoteText, QuoteAuthor } from './Quote.styled';
 import axios from '../../api/axios';
+import { useNavigate } from 'react-router-dom';
+import UpdateUserInfo from '../UpdateUserInfo';
 
 type QuoteProps = {
 	id: string;
@@ -10,22 +12,43 @@ type QuoteProps = {
 };
 
 const Quote: React.FC<QuoteProps> = (props: QuoteProps) => {
+	let navigate = useNavigate();
 	const [upVote, setupVote] = React.useState(false);
 	const [downVote, setdownVote] = React.useState(false);
 	const [score, setScore] = React.useState(props.votes);
 	const ToggleClass = async (type: string) => {
 		if (type === 'upVote') {
+			await axios.post(`/vote/${props.id}/upvote`, {}, { headers: { Authorization: `Bearer ${localStorage.getItem('accessToken')}` } }).catch((error) => {if(error.response.status === 401) {navigate('/login')}});
 			setupVote(true);
 			setdownVote(false);
 			setScore(score + 1);
-			const voteResponse = await axios.post(`/vote/${props.id}/upvote`, {}, { headers: { Authorization: `Bearer ${localStorage.getItem('accessToken')}` } });
+			UpdateUserInfo();
 		} else {
+			await axios.post(`/vote/${props.id}/downvote`, {}, { headers: { Authorization: `Bearer ${localStorage.getItem('accessToken')}` } }).catch((error) => {if(error.response.status === 401) {navigate('/login')}});
 			setdownVote(true);
 			setupVote(false);
 			setScore(score - 1);
-			const voteResponse = await axios.post(`/vote/${props.id}/downvote`, {}, { headers: { Authorization: `Bearer ${localStorage.getItem('accessToken')}` }, params: { id: props.id } });
+			UpdateUserInfo();
 		}
 	};
+	const SetVotedQuotes = () => {
+		const userInfo = localStorage.getItem('userInfo')
+		const userVotes = userInfo ? JSON.parse(userInfo).votes : [];
+		userVotes.forEach((vote:any) => {
+			if (vote.quoteId === props.id) {
+				if (vote.vote === 1) {
+					setupVote(true);
+					setdownVote(false);
+				} else {
+					setdownVote(true);
+					setupVote(false);
+				}
+			}
+		})
+	}
+	React.useEffect(() => {
+		SetVotedQuotes();
+	});
 
 	return (
 		<div id={props.id}>
