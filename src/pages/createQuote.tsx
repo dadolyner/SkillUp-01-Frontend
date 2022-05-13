@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from '../api/axios';
-import { FormContainer, TextArea, ConfirmButton, CancelButton } from '../components/FormComponent/Form.styled';
+import { FormContainer, TitleContainer, Title, Paragraph, TextArea, CancelButton, ConfirmButton, OrangeText } from '../components/FormComponent/Form.styled';
 import UpdateUserInfo from '../components/UpdateUserInfo';
 
 const CreateQuote: React.FC = () => {
@@ -25,18 +25,19 @@ const CreateQuote: React.FC = () => {
 	};
 
 	return (
+		<>
 		<div style={{ marginTop: '150px' }}>
 			<FormContainer>
 				<div style={{ gridColumn: 2 }}>
-					<div>
-						<h2>
-							Are you feeling <span style={{ color: '#EFB467' }}>inspired?</span>
-						</h2>
-						<p>You can post one quote. You can delete it on your profile or edit it inthis window</p>
-					</div>
+					<TitleContainer>
+						<Title>Are you feeling <OrangeText>inspired?</OrangeText></Title>
+						<Paragraph>You can post one quote. You can delete it on your profile or edit it this window</Paragraph>
+					</TitleContainer>
 
 					<TextArea placeholder={'Quote'} value={quote} onChange={(e) => setQuote(e.target.value)}></TextArea>
 
+					<br/>
+					
 					<div style={{ gridColumn: '2' }}>
 						<div style={{ display: 'grid', gridTemplateColumns: '20% 2% 20% 58%' }}>
 							<ConfirmButton onClick={() => {createQuoteFunction(); navigate('/profile');} }>Submit</ConfirmButton>
@@ -48,6 +49,7 @@ const CreateQuote: React.FC = () => {
 				</div>
 			</FormContainer>
 		</div>
+		</>
 	);
 };
 

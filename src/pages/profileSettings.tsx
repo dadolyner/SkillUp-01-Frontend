@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FormContainer, Label, Input, ConfirmButton, HalfGrid} from '../components/FormComponent/Form.styled';
+import { FormContainer, HalfGrid, TitleContainer, Title, Paragraph, Label, Input, ConfirmButton, OrangeText } from '../components/FormComponent/Form.styled';
 import axios from '../api/axios'
 
 const ProfileSettings: React.FC = () => {
@@ -22,13 +22,14 @@ const ProfileSettings: React.FC = () => {
     let navigate = useNavigate();
 
     return (
+        <>
         <div style={{marginTop: '100px'}}>
             <FormContainer>
                 <div style={{ gridColumn: 2 }}>
-                    <div style={{ textAlign: 'center' }}>
-                        <h2>Profile <span style={{ color: '#EFB467' }}>settings</span></h2>
-                        <p>Change your profile settings</p>
-                    </div>
+                    <TitleContainer>
+						<Title>Profile <OrangeText>settings</OrangeText></Title>
+						<Paragraph>Change your profile settings</Paragraph>
+					</TitleContainer>
 
                     <Label>Email</Label>
                     <Input type={'email'} placeholder={'Email'} onChange={(e) => setEmail(e.target.value)} />
@@ -50,10 +51,13 @@ const ProfileSettings: React.FC = () => {
                     <Label>Confirm Password</Label>
                     <Input type={'password'} placeholder={'Confirm Password'} onChange={(e) => setConfPassword(e.target.value)} />
 
+                    <br/>
+                    
                     <ConfirmButton onClick={() => changeSettingsFunction()}>Change settings</ConfirmButton>
                 </div>
             </FormContainer>
         </div>
+        </>
     );
 }
 

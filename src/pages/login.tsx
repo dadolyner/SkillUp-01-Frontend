@@ -1,9 +1,8 @@
-import '../css/style.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { useNavigate } from 'react-router-dom';
 import * as React from 'react';
 import axios from '../api/axios';
-import { FormContainer, Label, Input, ConfirmButton, LinkContainer, Link } from '../components/FormComponent/Form.styled';
+import { FormContainer, TopButtons, LeftBox, RightBox, TitleContainer, Title, Paragraph, Label, Input, ConfirmButton, OrangeText } from '../components/FormComponent/Form.styled';
 
 const Login: React.FC = () => {
 	let navigate = useNavigate();
@@ -12,11 +11,10 @@ const Login: React.FC = () => {
 	const [password, setPassword] = React.useState('');
 
 	const loginFunction = async () => {
-		localStorage.clear();
 		try {
 			const loginResponse = await axios.post('/auth/login', { email, password });
-			let accesToken: string = loginResponse.data.accesToken;
-			let isUserLoggedIn: string = 'true';
+			let accesToken = loginResponse.data.accesToken;
+			let isUserLoggedIn = 'true';
 			localStorage.setItem('accessToken', accesToken);
 			localStorage.setItem('userLoggedIn', isUserLoggedIn);
 			const userInfoResponse = await axios.get('/user/me', { headers: { Authorization: `Bearer ${accesToken}` } });
@@ -28,31 +26,33 @@ const Login: React.FC = () => {
 	};
 
 	return (
-		<div style={{ marginTop: '100px' }}>
+		<>
+			<TopButtons>
+				<LeftBox><h3 onClick={() => navigate('/')}>Quotastic</h3></LeftBox>
+				<RightBox>
+					<ConfirmButton className='short' onClick={() => navigate('/signup')}>SignUp</ConfirmButton>
+				</RightBox>
+			</TopButtons>
+			
 			<FormContainer>
 				<div style={{ gridColumn: 2 }}>
-					<div style={{ textAlign: 'center' }}>
-						<h2>
-							Welcome <span style={{ color: '#EFB467' }}>back</span>
-						</h2>
-						<p>Thank you for comming back. Hope you gave a good day and inspire others.</p>
-					</div>
+					<TitleContainer>
+						<Title>Welcome <OrangeText>back</OrangeText></Title>
+						<Paragraph>Thank you for comming back. Hope you gave a good day and inspire others.</Paragraph>
+					</TitleContainer>
 
 					<Label>Email</Label>
-					<Input type={'email'} placeholder={'Email'} value={email} onChange={(e) => setEmail(e.target.value)} />
+					<Input type={'email'} placeholder={'Email'} onChange={(e) => setEmail(e.target.value)} />
 
 					<Label>Password</Label>
-					<Input type={'password'} placeholder={'Password'} value={password} onChange={(e) => setPassword(e.target.value)} />
+					<Input type={'password'} placeholder={'Password'} onChange={(e) => setPassword(e.target.value)} />
+
+					<br/>
 
 					<ConfirmButton onClick={() => loginFunction()}>Login</ConfirmButton>
-
-					<LinkContainer>
-						<p>Dont have an account?</p>
-						<Link onClick={() => navigate('/signup')}>SignUp</Link>
-					</LinkContainer>
 				</div>
 			</FormContainer>
-		</div>
+		</>
 	);
 };
 

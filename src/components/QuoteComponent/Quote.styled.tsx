@@ -5,13 +5,14 @@ export const CardContainer = styled.div`
     position: relative;
     border-radius: 10px;
     box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.3);
-    height: 150px;
-    max-width: 300px;
-    min-width: 300px;
+    height: 170px;
+    max-width: 350px;
+    min-width: 350px;
     display: flex;
     flex-direction: row;
     font-family: Poppins;
     margin: 10px;
+    background-color: #fff;
 `;
 
 export const CardLeft = styled.div`
@@ -73,6 +74,11 @@ export const QuoteText = styled.div`
 
 export const QuoteAuthor = styled.div`
     position: absolute;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
     bottom: 5px;
     padding: 0 15px;
 `;

@@ -83,7 +83,6 @@ export const CancelButton = styled.button`
     background: #fff;
     box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.1);
     color: #EFB467;
-    margin-top: 20px;
     border: 1px solid #EFB467;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -92,6 +91,10 @@ export const CancelButton = styled.button`
         color: #fff;
         border: 1px solid #fff;
         transform: scale(1.05);
+    }
+
+    &.short {
+        width: 150px;
     }
 `;
 
@@ -105,7 +108,6 @@ export const ConfirmButton = styled.button`
     background: linear-gradient(240deg, #EFB467 0%, #DE8667 100%);
     box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.1);
     color: #fff;
-    margin-top: 20px;
     border: 1px solid #fff;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -115,4 +117,71 @@ export const ConfirmButton = styled.button`
         border: 1px solid #EFB467;
         transform: scale(1.05);
     }
+
+    &.short {
+        width: 150px;
+    }
+`;
+
+export const TitleContainer = styled.div`
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 600px;
+    margin: 0 auto;
+
+    @media screen and (max-width: 1250px) {
+        width: 100%;
+    }
+`;
+
+export const Title = styled.h1`
+    margin: 0;
+    font-size: 48px;
+    font-weight: 100;
+    width: 600px;
+    text-align: center;
+
+    @media screen and (max-width: 1250px) {
+        font-size: 24px;
+        width: 100%;
+    }
+`;
+
+export const Paragraph = styled.p`
+    width: 400px;
+    text-align: center;
+
+    @media screen and (max-width: 1250px) {
+        width: 100%;
+    }
+`;
+
+export const TopButtons = styled.div`
+    display: flex;
+    justify-content: space-between;
+    padding: 30px;
+`;
+
+export const LeftBox = styled.div`
+    justify-content: space-between;
+    align-items: center;
+`;
+export const RightBox = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+`;
+
+export const Header = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 150px;
+`;
+
+export const OrangeText = styled.span`
+    color: #DE8667;
 `;

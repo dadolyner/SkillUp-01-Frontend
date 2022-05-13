@@ -3,6 +3,7 @@ import { CardContainer, CardLeft, UpArrow, Score, DownArrow, CardRight, QuoteTex
 import axios from '../../api/axios';
 import { useNavigate } from 'react-router-dom';
 import UpdateUserInfo from '../UpdateUserInfo';
+import Avatar from '../../multimedia/Avatar.png';
 
 type QuoteProps = {
 	id: string;
@@ -25,43 +26,44 @@ const Quote: React.FC<QuoteProps> = (props: QuoteProps) => {
 			UpdateUserInfo();
 		} else {
 			await axios.post(`/vote/${props.id}/downvote`, {}, { headers: { Authorization: `Bearer ${localStorage.getItem('accessToken')}` } }).catch((error) => {if(error.response.status === 401) {navigate('/login')}});
-			setdownVote(true);
 			setupVote(false);
+			setdownVote(true);
 			setScore(score - 1);
 			UpdateUserInfo();
 		}
 	};
 	const SetVotedQuotes = () => {
-		const userInfo = localStorage.getItem('userInfo')
+		const userInfo = localStorage.getItem('userInfo') ? localStorage.getItem('userInfo') : null
 		const userVotes = userInfo ? JSON.parse(userInfo).votes : [];
+		if(!userVotes) return
 		userVotes.forEach((vote:any) => {
 			if (vote.quoteId === props.id) {
 				if (vote.vote === 1) {
 					setupVote(true);
 					setdownVote(false);
 				} else {
-					setdownVote(true);
 					setupVote(false);
+					setdownVote(true);
 				}
 			}
 		})
 	}
 	React.useEffect(() => {
 		SetVotedQuotes();
-	});
+	}, []);
 
 	return (
 		<div id={props.id}>
 			<CardContainer>
 				<CardLeft>
 					<UpArrow className={upVote ? 'upVoted' : ''} onClick={() => ToggleClass('upVote')} />
-					<Score>{score + 100}</Score>
+					<Score>{score}</Score>
 					<DownArrow className={downVote ? 'downVoted' : ''} onClick={() => ToggleClass('downVote')} />
 				</CardLeft>
 
 				<CardRight>
 					<QuoteText style={{ fontSize: `${props.quote.length > 100 ? '10px' : '16px'}` }}>{props.quote}</QuoteText>
-					<QuoteAuthor>{props.user}</QuoteAuthor>
+					<QuoteAuthor><img src={Avatar} alt={'Avatar.png'} height={'30px'}/>{props.user}</QuoteAuthor>
 				</CardRight>
 			</CardContainer>
 		</div>

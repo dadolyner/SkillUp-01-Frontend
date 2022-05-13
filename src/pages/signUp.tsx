@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FormContainer, Label, Input, ConfirmButton, HalfGrid, LinkContainer, Link } from '../components/FormComponent/Form.styled';
+import { FormContainer, HalfGrid, TopButtons, LeftBox, RightBox, TitleContainer, Title, Paragraph, Label, Input, ConfirmButton, CancelButton, OrangeText } from '../components/FormComponent/Form.styled';
 import axios from '../api/axios'
 
 const SignUp: React.FC = () => {
@@ -16,22 +16,27 @@ const SignUp: React.FC = () => {
     const signUpFunction = async() => {
         if(password === confirmPassword){
             await axios.post('/auth/signup', {first_name, last_name, email, username, password, confirmPassword})
-            .then(() => {
-                navigate('/login')
-            })
+            navigate('/login')    
         } else {
             return
         }
     }
 
     return (
-        <div style={{ marginTop: '100px' }}>
+        <>
+            <TopButtons>
+				<LeftBox><h3 onClick={() => navigate('/')}>Quotastic</h3></LeftBox>
+				<RightBox>
+					<CancelButton className='short' onClick={() => navigate('/login')}>Login</CancelButton>
+				</RightBox>
+			</TopButtons>
+
             <FormContainer>
                 <div style={{ gridColumn: 2 }}>
-                    <div style={{ textAlign: 'center' }}>
-                        <h2>What is your <span style={{ color: '#EFB467' }}>name?</span></h2>
-                        <p>Your name will appear on quotes and your public profile.</p>
-                    </div>
+                    <TitleContainer>
+						<Title>What is your <OrangeText>name?</OrangeText></Title>
+						<Paragraph>Your name will appear on quotes and your public profle.</Paragraph>
+					</TitleContainer>
 
                     <Label>Email</Label>
                     <Input type={'email'} placeholder={'Email'} onChange={(e) => setEmail(e.target.value)} />
@@ -46,6 +51,7 @@ const SignUp: React.FC = () => {
                             <Input type={'text'} placeholder={'Last Name'} onChange={(e) => setLastName(e.target.value)} />
                         </div>
                     </HalfGrid>
+
                     <Label>Username</Label>
                     <Input type={'text'} placeholder={'Username'} onChange={(e) => setUsername(e.target.value)} />
 
@@ -55,15 +61,12 @@ const SignUp: React.FC = () => {
                     <Label>Confirm Password</Label>
                     <Input type={'password'} placeholder={'Confirm Password'} onChange={(e) => setConfPassword(e.target.value)} />
 
-                    <ConfirmButton onClick={() => signUpFunction()}>SignUp</ConfirmButton>
-
-                    <LinkContainer>
-                        <p>Already have an account?</p>
-                        <Link onClick={() => navigate('/login')}>LogIn</Link>
-                    </LinkContainer>
+                    <br/>
+                    
+                    <ConfirmButton onClick={() => signUpFunction}>SignUp</ConfirmButton>
                 </div>
             </FormContainer>
-        </div>
+        </>
     );
 }
 
