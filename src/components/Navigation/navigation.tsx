@@ -13,6 +13,7 @@ const Navigation: React.FC = () => {
 	const userString = currentUser ? JSON.parse(currentUser) : '';
 
 	const logout = () => {
+		console.log(localStorage.getItem('userLoggedIn'))
 		if(!localStorage.getItem('userLoggedIn')) return
 		localStorage.removeItem('userLoggedIn');
 		localStorage.removeItem('userInfo');

@@ -21,6 +21,15 @@ const Home: React.FC = () => {
 		return sum;
 	};
 
+	const logout = () => {
+		console.log(localStorage.getItem('userLoggedIn'))
+		if(!localStorage.getItem('userLoggedIn')) return
+		localStorage.removeItem('userLoggedIn');
+		localStorage.removeItem('userInfo');
+		localStorage.removeItem('accessToken');
+		navigate('/');
+	}
+
 	// const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
 
 	return (
@@ -34,7 +43,7 @@ const Home: React.FC = () => {
 								<>
 									<LinkerLink onClick={() => navigate('/')}>Home</LinkerLink>
 									<LinkerLink onClick={() => navigate('/profile-settings')}>Settings</LinkerLink>
-									<LinkerLink>Logout</LinkerLink>
+									<LinkerLink onClick={() => logout()}>Logout</LinkerLink>
 									<LinkerButton className='profile' onClick={() => navigate('/profile')}></LinkerButton>
 									<LinkerButton className='quote' onClick={() => navigate('/create-quote')}></LinkerButton>
 								</>

@@ -27,6 +27,15 @@ const Profile: React.FC = () => {
 		return sum;
 	};
 
+    const logout = () => {
+		console.log(localStorage.getItem('userLoggedIn'))
+		if(!localStorage.getItem('userLoggedIn')) return
+		localStorage.removeItem('userLoggedIn');
+		localStorage.removeItem('userInfo');
+		localStorage.removeItem('accessToken');
+		navigate('/');
+	}
+
     return (
         <>
         <Container>
@@ -35,7 +44,7 @@ const Profile: React.FC = () => {
 				<RightBox>
 					<LinkerLink onClick={() => navigate('/')}>Home</LinkerLink>
 					<LinkerLink onClick={() => navigate('/profile-settings')}>Settings</LinkerLink>
-					<LinkerLink>Logout</LinkerLink>
+					<LinkerLink onClick={() => logout()}>Logout</LinkerLink>
 					<LinkerButton className='profile' onClick={() => navigate('/profile')}></LinkerButton>
 					<LinkerButton className='quote' onClick={() => navigate('/create-quote')}></LinkerButton>
 				</RightBox>
