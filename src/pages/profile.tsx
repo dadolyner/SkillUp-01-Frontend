@@ -19,6 +19,7 @@ const Profile: React.FC = () => {
         // setMyLikedQuote(response.data.filter((quote: any )=> quote.likedBy.includes(userString.id)));
 	};
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     React.useEffect(() => { myQuote() }, []);
     
     const sumQuoteVote = (votes: object[]): number => {
