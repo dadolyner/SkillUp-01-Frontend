@@ -36,7 +36,7 @@ const Home: React.FC = () => {
 		<>
 			<Container>
 				<TopButtons>
-					<LeftBox><h3>Quotastic</h3></LeftBox>
+					<LeftBox onClick={() => navigate("/")}><h3>Quotastic</h3></LeftBox>
 
 					<RightBox>
 						{ isLoggedIn === 'true' ? (

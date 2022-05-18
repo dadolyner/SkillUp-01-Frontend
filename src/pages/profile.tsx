@@ -41,7 +41,7 @@ const Profile: React.FC = () => {
         <>
         <Container>
             <TopButtons>
-				<LeftBox><h3 style={{color: 'white'}}>Quotastic</h3></LeftBox>
+				<LeftBox onClick={() => navigate("/")}><h3 style={{color: 'white'}}>Quotastic</h3></LeftBox>
 				<RightBox>
 					<LinkerLink onClick={() => navigate('/')}>Home</LinkerLink>
 					<LinkerLink onClick={() => navigate('/profile-settings')}>Settings</LinkerLink>
