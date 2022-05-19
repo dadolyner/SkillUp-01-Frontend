@@ -10,7 +10,7 @@ const CreateQuote: React.FC = () => {
 
 	const userInfo: any = localStorage.getItem('userInfo');
 	const checkUserInfo = () => {
-		JSON.parse(userInfo) ? setQuote(JSON.parse(userInfo).quote.quote) : setQuote('');
+		JSON.parse(userInfo).quote ? setQuote(JSON.parse(userInfo).quote.quote) : setQuote('');
 	};
 	React.useEffect(() => {
 		checkUserInfo();

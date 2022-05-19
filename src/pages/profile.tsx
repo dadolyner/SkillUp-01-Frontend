@@ -15,7 +15,9 @@ const Profile: React.FC = () => {
 
     const myQuote = async () => {
 		const response = await axios.get('/quote/list');
-		setMyQuote(response.data.filter((quote: any )=> quote.id === userString.quote.id));
+        if(!userString.quote) return
+		const myQuote = setMyQuote(response.data.filter((quote: any )=> quote.id === userString.quote.id));
+        return myQuote;
 	};
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
