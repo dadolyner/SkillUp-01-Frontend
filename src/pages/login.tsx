@@ -10,8 +10,8 @@ const Login: React.FC = () => {
 	const [email, setEmail] = React.useState('');
 	const [password, setPassword] = React.useState('');
 
-	const loginFunction = async (ev: any) => {
-		ev.preventDefault();
+	const loginFunction = async (event: any) => {
+		event.preventDefault();
 		console.log('loginFunction');
 		try {
 			const loginResponse = await axios.post('/auth/login', { email, password });
@@ -22,9 +22,7 @@ const Login: React.FC = () => {
 			const userInfoResponse = await axios.get('/user/me', { headers: { Authorization: `Bearer ${accesToken}` } });
 			localStorage.setItem('userInfo', JSON.stringify(userInfoResponse.data));
 			navigate('/profile');
-		} catch (e) {
-			console.log(e);
-		}
+		} catch (error) { console.log(error); }
 	};
 
 	return (
@@ -51,7 +49,7 @@ const Login: React.FC = () => {
 
 					<br/>
 
-					<ConfirmButton onClick={(e) => loginFunction(e)}>Login</ConfirmButton>
+					<ConfirmButton onClick={(event) => loginFunction(event)}>Login</ConfirmButton>
 				</div>
 			</FormContainer>
 		</>

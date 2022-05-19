@@ -5,7 +5,8 @@ export const CardContainer = styled.div`
     position: relative;
     border-radius: 10px;
     box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.3);
-    height: 170px;
+    min-height: 120px;
+    max-height: 200px;
     max-width: 350px;
     min-width: 350px;
     display: flex;
@@ -13,6 +14,7 @@ export const CardContainer = styled.div`
     font-family: Poppins;
     margin: 10px;
     background-color: #fff;
+    padding: 10px;
 `;
 
 export const CardLeft = styled.div`
@@ -20,6 +22,7 @@ export const CardLeft = styled.div`
     flex-direction: column;
     justify-content: center;
     padding: 10px;
+    margin-left: 10px;
 `;
 
 export const UpArrow = styled.div`
@@ -67,18 +70,21 @@ export const CardRight = styled.div`
 `;
 
 export const QuoteText = styled.div`
-    position: absolute;
     vertical-align: center;
-    padding: 15px;
+    padding: 0 15px 15px 15px;
 `;
 
 export const QuoteAuthor = styled.div`
-    position: absolute;
+    margin-top: auto;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     gap: 10px;
     bottom: 5px;
     padding: 0 15px;
+
+    &:hover {
+        cursor: pointer;
+    }
 `;

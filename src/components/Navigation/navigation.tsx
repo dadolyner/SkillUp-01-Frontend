@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Container, NavigationLogo, NavigationItems, Item, Hamburger, Lines } from './navigation.styled';
 import { ConfirmButton, CancelButton } from '../FormComponent/Form.styled';
 import Avatar from '../../multimedia/Avatar.png'
+import { Logout } from '../Logout';
 
 const Navigation: React.FC = () => {
 	const [isOpen, setIsOpen] = React.useState(false);
@@ -11,16 +12,6 @@ const Navigation: React.FC = () => {
 
 	const currentUser = localStorage.getItem('userInfo');
 	const userString = currentUser ? JSON.parse(currentUser) : '';
-
-	const logout = () => {
-		console.log(localStorage.getItem('userLoggedIn'))
-		if(!localStorage.getItem('userLoggedIn')) return
-		localStorage.removeItem('userLoggedIn');
-		localStorage.removeItem('userInfo');
-		localStorage.removeItem('accessToken');
-		navigate('/');
-		setIsOpen(false)
-	}
 
 	return (
 		<>
@@ -41,7 +32,7 @@ const Navigation: React.FC = () => {
 						</Item>
 						<Item onClick={() => {navigate("/"); setIsOpen(false);}}>Home</Item>
 						<Item onClick={() => {navigate("/profile-settings"); setIsOpen(false);}}>Settings</Item>
-						<Item onClick={() => logout()}>Logout</Item>
+						<Item onClick={() => { Logout(); navigate('/'); setIsOpen(false);}}>Logout</Item>
 					</NavigationItems>
 				) : (
 					<NavigationItems isOpen={isOpen}>

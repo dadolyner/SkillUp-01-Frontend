@@ -10,22 +10,26 @@ type QuoteProps = {
 	votes: number;
 	quote: string;
 	user: string;
+	userId: string;
 };
 
 const Quote: React.FC<QuoteProps> = (props: QuoteProps) => {
+	const { id, votes, quote, user, userId } = props;
+	
 	let navigate = useNavigate();
 	const [upVote, setupVote] = React.useState(false);
 	const [downVote, setdownVote] = React.useState(false);
-	const [score, setScore] = React.useState(props.votes);
+	const [score, setScore] = React.useState(votes);
+
 	const ToggleClass = async (type: string) => {
 		if (type === 'upVote') {
-			await axios.post(`/vote/${props.id}/upvote`, {}, { headers: { Authorization: `Bearer ${localStorage.getItem('accessToken')}` } }).catch((error) => {if(error.response.status === 401) {navigate('/login')}});
+			await axios.post(`/vote/${id}/upvote`, {}, { headers: { Authorization: `Bearer ${localStorage.getItem('accessToken')}` } }).catch((error) => {if(error.response.status === 401) {navigate('/login')}});
 			setupVote(true);
 			setdownVote(false);
 			setScore(score + 1);
 			UpdateUserInfo();
 		} else {
-			await axios.post(`/vote/${props.id}/downvote`, {}, { headers: { Authorization: `Bearer ${localStorage.getItem('accessToken')}` } }).catch((error) => {if(error.response.status === 401) {navigate('/login')}});
+			await axios.post(`/vote/${id}/downvote`, {}, { headers: { Authorization: `Bearer ${localStorage.getItem('accessToken')}` } }).catch((error) => {if(error.response.status === 401) {navigate('/login')}});
 			setupVote(false);
 			setdownVote(true);
 			setScore(score - 1);
@@ -37,7 +41,7 @@ const Quote: React.FC<QuoteProps> = (props: QuoteProps) => {
 		const userVotes = userInfo ? JSON.parse(userInfo).votes : [];
 		if(!userVotes) return
 		userVotes.forEach((vote:any) => {
-			if (vote.quoteId === props.id) {
+			if (vote.quoteId === id) {
 				if (vote.vote === 1) {
 					setupVote(true);
 					setdownVote(false);
@@ -52,8 +56,12 @@ const Quote: React.FC<QuoteProps> = (props: QuoteProps) => {
 		SetVotedQuotes();
 	}, []);
 
+	const OpenUserProfilePage = async () => {
+		await axios.post(`/user/${userId}`, {}, { headers: { Authorization: `Bearer ${localStorage.getItem('accessToken')}` } });
+	}
+
 	return (
-		<div id={props.id}>
+		<div id={id}>
 			<CardContainer>
 				<CardLeft>
 					<UpArrow className={upVote ? 'upVoted' : ''} onClick={() => ToggleClass('upVote')} />
@@ -62,8 +70,8 @@ const Quote: React.FC<QuoteProps> = (props: QuoteProps) => {
 				</CardLeft>
 
 				<CardRight>
-					<QuoteText style={{ fontSize: `${props.quote.length > 100 ? '10px' : '16px'}` }}>{props.quote}</QuoteText>
-					<QuoteAuthor><img src={Avatar} alt={'Avatar.png'} height={'30px'}/>{props.user}</QuoteAuthor>
+					<QuoteText>{quote}</QuoteText>
+					<QuoteAuthor onClick={() => { console.log(`Redirecting to ${user} profile`) }}><img src={Avatar} alt={'Avatar.png'} height={'30px'}/>{user}</QuoteAuthor>
 				</CardRight>
 			</CardContainer>
 		</div>
