@@ -13,10 +13,11 @@ const SignUp: React.FC = () => {
     const [password, setPassword] = React.useState('')
     const [confirmPassword, setConfPassword] = React.useState('')
 
-    const signUpFunction = async() => {
+    const signUpFunction = async (event: any) => {
+        event.preventDefault();
         if(password === confirmPassword){
             await axios.post('/auth/signup', {first_name, last_name, email, username, password, confirmPassword})
-            navigate('/login')    
+            navigate('/login')
         } else {
             return
         }
@@ -63,7 +64,7 @@ const SignUp: React.FC = () => {
 
                     <br/>
                     
-                    <ConfirmButton onClick={() => signUpFunction}>SignUp</ConfirmButton>
+                    <ConfirmButton onClick={(event) => signUpFunction(event)}>SignUp</ConfirmButton>
                 </div>
             </FormContainer>
         </>
