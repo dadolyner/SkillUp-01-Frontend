@@ -11,10 +11,11 @@ type QuoteProps = {
 	quote: string;
 	user: string;
 	userId: string;
+	userLiked?: boolean;
 };
 
 const Quote: React.FC<QuoteProps> = (props: QuoteProps) => {
-	const { id, votes, quote, user, userId } = props;
+	const { id, votes, quote, user, userId, userLiked } = props;
 	
 	let navigate = useNavigate();
 	const [upVote, setupVote] = React.useState(false);
@@ -57,21 +58,34 @@ const Quote: React.FC<QuoteProps> = (props: QuoteProps) => {
 	}, []);
 
 	const OpenUserProfilePage = async () => {
-		await axios.post(`/user/${userId}`, {}, { headers: { Authorization: `Bearer ${localStorage.getItem('accessToken')}` } });
+		await axios.get(`/user/${userId}`);
+		navigate(`/userProfile/${userId}`);
+		window.location.reload()
 	}
 
 	return (
 		<div id={id}>
 			<CardContainer>
 				<CardLeft>
-					<UpArrow className={upVote ? 'upVoted' : ''} onClick={() => ToggleClass('upVote')} />
-					<Score>{score}</Score>
-					<DownArrow className={downVote ? 'downVoted' : ''} onClick={() => ToggleClass('downVote')} />
+					{ userLiked ? (
+						<>
+							<UpArrow className={'upVoted'} />
+							<Score>{score}</Score>
+							<DownArrow className={''} />
+						</>
+					) : (
+						<>
+							<UpArrow className={upVote ? 'upVoted' : ''} onClick={() => ToggleClass('upVote')} />
+							<Score>{score}</Score>
+							<DownArrow className={downVote ? 'downVoted' : ''} onClick={() => ToggleClass('downVote')} />
+						</>
+					) }
+					
 				</CardLeft>
 
 				<CardRight>
 					<QuoteText>{quote}</QuoteText>
-					<QuoteAuthor onClick={() => { console.log(`Redirecting to ${user} profile`) }}><img src={Avatar} alt={'Avatar.png'} height={'30px'}/>{user}</QuoteAuthor>
+					<QuoteAuthor onClick={() => { OpenUserProfilePage() }}><img src={Avatar} alt={'Avatar.png'} height={'30px'}/>{user}</QuoteAuthor>
 				</CardRight>
 			</CardContainer>
 		</div>
