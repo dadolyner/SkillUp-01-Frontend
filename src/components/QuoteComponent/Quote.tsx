@@ -24,18 +24,22 @@ const Quote: React.FC<QuoteProps> = (props: QuoteProps) => {
 	const [score, setScore] = React.useState(votes);
 
 	const ToggleClass = async (type: string) => {
-		if (type === 'upVote') {
-			await axios.post(`/vote/${id}/upvote`, {}, { headers: { Authorization: `Bearer ${localStorage.getItem('accessToken')}` } }).catch((error) => {if(error.response.status === 401) {navigate('/login')}});
-			setupVote(true);
-			setdownVote(false);
-			setScore(score + 1);
-			UpdateUserInfo();
-		} else {
-			await axios.post(`/vote/${id}/downvote`, {}, { headers: { Authorization: `Bearer ${localStorage.getItem('accessToken')}` } }).catch((error) => {if(error.response.status === 401) {navigate('/login')}});
-			setupVote(false);
-			setdownVote(true);
-			setScore(score - 1);
-			UpdateUserInfo();
+		try {
+			if (type === 'upVote') {
+				await axios.post(`/vote/${id}/upvote`, {}, { headers: { Authorization: `Bearer ${localStorage.getItem('accessToken')}` } });
+				setupVote(true);
+				setdownVote(false);
+				setScore(score + 1);
+				UpdateUserInfo();
+			} else {
+				await axios.post(`/vote/${id}/downvote`, {}, { headers: { Authorization: `Bearer ${localStorage.getItem('accessToken')}` } });
+				setupVote(false);
+				setdownVote(true);
+				setScore(score - 1);
+				UpdateUserInfo();
+			}
+		} catch(error) {
+			if(error) {navigate('/login')}
 		}
 	};
 	const SetVotedQuotes = () => {

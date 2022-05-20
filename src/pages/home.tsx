@@ -12,6 +12,7 @@ import BottomFlek from '../multimedia/BottomFlek.png';
 const Home: React.FC = () => {
 	let navigate = useNavigate();
 	const [quotes, setQuotes] = React.useState<any[]>([]);
+	const [quotesWithVotes, setQuotesWithVotes] = React.useState<any[]>([]);
 	const isLoggedIn = localStorage.getItem('userLoggedIn');
 
 	const output = async () => {
@@ -21,16 +22,25 @@ const Home: React.FC = () => {
 	React.useEffect(() => { output() }, []);
 	
 	const sumQuoteVote = (votes: object[]): number => {
+		if(votes.length === 0) return 0;
 		let sum = 0;
 		votes.forEach((vote: any) => (vote.vote === 1 ? sum++ : (sum += 0)));
 		return sum;
 	};
-
+	
 	const getRandomQuote = () => {
 		try { return quotes[Math.floor(Math.random() * quotes.length)]; } 
 		catch (error) { return error }
 	}
 	const randomQuote = getRandomQuote();
+
+	const outputQuotesWithVotes = async () => {
+		quotes.forEach(quote => quote.votes = sumQuoteVote(quote.votes));
+		setQuotesWithVotes(quotes);
+	}
+	React.useEffect(() => { outputQuotesWithVotes(); }, []);
+
+	
 
 	return (
 		<>
@@ -105,7 +115,7 @@ const Home: React.FC = () => {
 						<BodyDesc>Most upvoted quotes on the platform. Sign up or login to like the quotes<br/> and keep them saved in your profile</BodyDesc>
 					</>
 				)}
-				<Body>
+				<Body style={isLoggedIn === 'true' ? {} : {paddingBottom: '200px'}}>
 					<MiddleFlekBox src={MiddleFlek} width={'100px'}/>
 					{quotes.map((quote) => {
 						return <Quote key={quote.id} id={quote.id} votes={sumQuoteVote(quote.votes)} quote={quote.quote} user={`${quote.user.first_name} ${quote.user.last_name}`} userId={quote.user.id}/>;
