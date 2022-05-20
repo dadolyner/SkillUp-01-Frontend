@@ -5,8 +5,8 @@ export const CardContainer = styled.div`
     position: relative;
     border-radius: 10px;
     box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.3);
-    min-height: 120px;
-    max-height: 200px;
+    min-height: 180px;
+    max-height: 180px;
     max-width: 350px;
     min-width: 350px;
     display: flex;

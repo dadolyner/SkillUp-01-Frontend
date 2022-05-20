@@ -12,10 +12,7 @@ const CreateQuote: React.FC = () => {
 	const checkUserInfo = () => {
 		JSON.parse(userInfo).quote ? setQuote(JSON.parse(userInfo).quote.quote) : setQuote('');
 	};
-	React.useEffect(() => {
-		checkUserInfo();
-		UpdateUserInfo();
-	}, []);
+	React.useEffect(() => { checkUserInfo(); UpdateUserInfo(); }, []);
 
 	const createQuoteFunction = async (event: any) => {
 		event.preventDefault();

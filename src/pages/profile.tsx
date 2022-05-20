@@ -10,6 +10,7 @@ const Profile: React.FC = () => {
     const currentUser = localStorage.getItem('userInfo');
     const userString = currentUser ? JSON.parse(currentUser) : '';
     const [myQuoteValue, setMyQuote] = React.useState<any[]>([]);
+    const [myLikedQuotesValue, setMyLikedQuotes] = React.useState<any[]>([]);
     
     let navigate = useNavigate();
 
@@ -20,7 +21,6 @@ const Profile: React.FC = () => {
         return myQuote;
 	};
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     React.useEffect(() => { myQuote() }, []);
     
     const sumQuoteVote = (votes: object[]): number => {
@@ -28,6 +28,19 @@ const Profile: React.FC = () => {
 		votes.forEach((vote: any) => (vote.vote === 1 ? sum++ : (sum += 0)));
 		return sum;
 	};
+
+    const getLikedQuotes = async () => {
+        if(!userString.votes) return
+        const response = await axios.get('/quote/list');
+        const { data } = response
+        let likedQuoteId: string[] = [];
+        userString.votes.filter((vote: any) => vote.vote === 1).forEach((vote: any) => likedQuoteId.push(vote.quoteId))
+        
+        const likedQuotes = data.filter((quote: any) => likedQuoteId.includes(quote.id))
+        setMyLikedQuotes(likedQuotes);
+    }
+
+    React.useEffect(() => { getLikedQuotes() }, []);
 
     return (
         <>
@@ -61,7 +74,9 @@ const Profile: React.FC = () => {
 
             <LikedTitle>Likes</LikedTitle>
             <Body>
-
+                { myLikedQuotesValue.map((quote) => {
+					return <Quote key={quote.id} id={quote.id} votes={sumQuoteVote(quote.votes)} quote={quote.quote} user={`${quote.user.first_name} ${quote.user.last_name}`} userId={quote.user.id}/>;
+                })}
             </Body>
         </Container>
         </>

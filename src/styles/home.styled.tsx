@@ -1,14 +1,13 @@
 import styled from 'styled-components';
-import Background from '../multimedia/Background.png';
 import Avatar from '../multimedia/Avatar.png';
 import CreateQuote from '../multimedia/CreateQuote.png';
 
 export const Container = styled.div`
-    background-image: url(${Background});
 	background-repeat: no-repeat;
 	background-size: cover;
 
-    padding: 0 100px;
+    padding: 0 60px;
+    min-width: 600px;
 `;
 
 export const TopButtons = styled.div`
@@ -28,7 +27,7 @@ export const RightBox = styled.div`
 
     button {margin: 0 10px; }
 
-    @media screen and (max-width: 1250px) {
+    @media screen and (max-width: 900px) {
         display: none;
     }
 `;
@@ -82,7 +81,6 @@ export const Body = styled.div`
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    padding-bottom: 200px;
 `;
 
 export const OrangeText = styled.span`
@@ -113,4 +111,23 @@ export const LinkerButton = styled.button`
 
     &.profile { background-image: url(${Avatar}); }
     &.quote { background-image: url(${CreateQuote}); }
+`;
+
+export const TopFlekBox = styled.img`
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: -1;
+`;
+
+export const MiddleFlekBox = styled.img`
+    position: absolute;
+    left: 0;
+    z-index: -1;
+`;
+
+export const BottomFlekBox = styled.img`
+    position: absolute;
+    right: 0;
+    z-index: -1;
 `;

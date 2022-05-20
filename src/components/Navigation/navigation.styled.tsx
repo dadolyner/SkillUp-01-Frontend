@@ -17,7 +17,7 @@ export const Container = styled.nav`
 	z-index: 20;
 	background-color: #fff;
 	display: none;
-	@media screen and (max-width: 1250px) {
+	@media screen and (max-width: 900px) {
 		display: grid;
 		grid-template-columns: 50% 50%;
 		align-items: center;
@@ -40,7 +40,7 @@ export const NavigationItems = styled.div<isOpened>`
 	grid-template-columns: repeat(3, 1fr);
 	align-items: center;
 	position: relative;
-	@media screen and (max-width: 1250px) {
+	@media screen and (max-width: 900px) {
 		grid-template-columns: 100%;
 		overflow: hidden;
 		width: 100%;
@@ -82,7 +82,7 @@ export const Hamburger = styled.div`
 		background: #000;
 		margin-bottom: 5px;
 	}
-	@media screen and (max-width: 1250px) {
+	@media screen and (max-width: 900px) {
 		display: flex;
 		justify-content: center;
 		align-items: center;

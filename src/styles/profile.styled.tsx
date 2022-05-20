@@ -9,6 +9,8 @@ export const Container = styled.div`
     background-image: url(${TopCurve});
 	background-repeat: no-repeat;
 	background-size: 100% 1600px;
+
+    min-width: 600px;
 `;
 
 export const TopButtons = styled.div`
@@ -114,7 +116,7 @@ export const Body = styled.div`
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     padding-bottom: 200px;
 `;

@@ -12,7 +12,6 @@ const Login: React.FC = () => {
 
 	const loginFunction = async (event: any) => {
 		event.preventDefault();
-		console.log('loginFunction');
 		try {
 			const loginResponse = await axios.post('/auth/login', { email, password });
 			let accesToken = loginResponse.data.accesToken;

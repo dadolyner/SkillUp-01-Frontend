@@ -6,6 +6,7 @@ export const FormContainer = styled.form`
     display: grid;
     grid-template-columns: 30% 40% 30%;
     font-family: Poppins;
+    min-width: 600px;
 `;
 
 export const HalfGrid = styled.div`
