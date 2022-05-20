@@ -12,11 +12,11 @@ const UserProfile: React.FC = () => {
     const [userInfo, setUserInfo] = React.useState<any>({});
     
     const navigate = useNavigate();
-    const params = useParams<{ id: string }>();
+    const { id } = useParams();
     
     const getUserInfo = async () => {
         try {
-            const response = await axios.get(`/user/${params.id}`);
+            const response = await axios.get(`/user/${id}`);
             setUserInfo(response.data);
             return response.data;
         } catch (error) {}
