@@ -4,6 +4,7 @@ import axios from '../../api/axios';
 import { useNavigate } from 'react-router-dom';
 import UpdateUserInfo from '../UpdateUserInfo';
 import Avatar from '../../multimedia/Avatar.png';
+import { textChangeRangeIsUnchanged } from 'typescript';
 
 type QuoteProps = {
 	id: string;
@@ -84,7 +85,7 @@ const Quote: React.FC<QuoteProps> = (props: QuoteProps) => {
 				</CardLeft>
 
 				<CardRight>
-					<QuoteText>{quote}</QuoteText>
+					<QuoteText style={quote.length>160 ? {fontSize: '12px'} : {fontSize: '14px'}}>{quote}</QuoteText>
 					<QuoteAuthor onClick={() => { OpenUserProfilePage() }}><img src={Avatar} alt={'Avatar.png'} height={'30px'}/>{user}</QuoteAuthor>
 				</CardRight>
 			</CardContainer>
