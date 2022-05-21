@@ -72,20 +72,9 @@ const Quote: React.FC<QuoteProps> = (props: QuoteProps) => {
 		<div id={id}>
 			<CardContainer>
 				<CardLeft>
-					{ userLiked ? (
-						<>
-							<UpArrow className={'upVoted'} />
-							<Score>{score}</Score>
-							<DownArrow className={''} />
-						</>
-					) : (
-						<>
-							<UpArrow className={upVote ? 'upVoted' : ''} onClick={() => ToggleClass('upVote')} />
-							<Score>{score}</Score>
-							<DownArrow className={downVote ? 'downVoted' : ''} onClick={() => ToggleClass('downVote')} />
-						</>
-					) }
-					
+					<UpArrow className={upVote ? 'upVoted' : ''} onClick={() => ToggleClass('upVote')} />
+					<Score>{score}</Score>
+					<DownArrow className={downVote ? 'downVoted' : ''} onClick={() => ToggleClass('downVote')} />
 				</CardLeft>
 
 				<CardRight>
