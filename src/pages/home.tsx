@@ -16,16 +16,24 @@ const Home: React.FC = () => {
 	const isLoggedIn = localStorage.getItem('userLoggedIn');
 
 	const output = async () => {
-		const response = await axios.get('/quote/list');
-		setQuotes(response.data);
+		const normalResponse = await axios.get('/quote/list');
+        setQuotes(normalResponse.data);
+
+		const orderedResponse = await axios.get('/quote/list');
+        orderedResponse.data.forEach((quote: any) => quote.votes = sumQuoteVote(quote.votes))
+        orderedResponse.data.sort((a: any, b: any) => b.votes - a.votes)
+        orderedResponse.data.length = 6
+		setQuotesWithVotes(orderedResponse.data);
 	};
 	React.useEffect(() => { output() }, []);
 	
 	const sumQuoteVote = (votes: object[]): number => {
-		if(votes.length === 0) return 0;
-		let sum = 0;
-		votes.forEach((vote: any) => (vote.vote === 1 ? sum++ : (sum += 0)));
-		return sum;
+		if(votes.length > 0) {
+            let sum = 0;
+            votes.forEach((vote: any) => (vote.vote === 1 ? sum++ : (sum += 0)));
+            return sum;
+        }
+        else { return 0; }
 	};
 	
 	const getRandomQuote = () => {
@@ -33,14 +41,6 @@ const Home: React.FC = () => {
 		catch (error) { return error }
 	}
 	const randomQuote = getRandomQuote();
-
-	const outputQuotesWithVotes = async () => {
-		quotes.forEach(quote => quote.votes = sumQuoteVote(quote.votes));
-		setQuotesWithVotes(quotes);
-	}
-	React.useEffect(() => { outputQuotesWithVotes(); }, []);
-
-	
 
 	return (
 		<>
@@ -115,10 +115,10 @@ const Home: React.FC = () => {
 						<BodyDesc>Most upvoted quotes on the platform. Sign up or login to like the quotes<br/> and keep them saved in your profile</BodyDesc>
 					</>
 				)}
-				<Body style={isLoggedIn === 'true' ? {} : {paddingBottom: '200px'}}>
+				<Body style={isLoggedIn === 'true' ? {} : { paddingBottom: '200px'}}>
 					<MiddleFlekBox src={MiddleFlek} width={'100px'}/>
-					{quotes.map((quote) => {
-						return <Quote key={quote.id} id={quote.id} votes={sumQuoteVote(quote.votes)} quote={quote.quote} user={`${quote.user.first_name} ${quote.user.last_name}`} userId={quote.user.id}/>;
+					{quotesWithVotes.map((quote) => {
+						return <Quote key={quote.id} id={quote.id} votes={quote.votes} quote={quote.quote} user={`${quote.user.first_name} ${quote.user.last_name}`} userId={quote.user.id}/>;
 					})}
 				</Body>
 
