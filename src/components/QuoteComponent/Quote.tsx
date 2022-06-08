@@ -4,7 +4,6 @@ import axios from '../../api/axios';
 import { useNavigate } from 'react-router-dom';
 import UpdateUserInfo from '../UpdateUserInfo';
 import Avatar from '../../multimedia/Avatar.png';
-import { textChangeRangeIsUnchanged } from 'typescript';
 
 type QuoteProps = {
 	id: string;
