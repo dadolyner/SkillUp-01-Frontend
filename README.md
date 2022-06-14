@@ -5,7 +5,6 @@
 - [Description](#description)
 - [How To Use](#how-to-use)
 - [References](#references)
-- [License](#license)
 - [Author Info](#author-info)
 
 ---
@@ -37,8 +36,6 @@ a quote.
 - Git
 - Github
 
-[Back To The Top](#Quotastic)
-
 ---
 
 ## How To Use
@@ -65,28 +62,8 @@ $ npm start
 
 - Github - [@dadolyner](https://github.com/dadolyner)
 
-[Back To The Top](#Quotastic)
-
----
-
-## License
-MIT License
-
-- Copyright (c) 2021 [skillupmentor](https://skillupmentor.com/)
-- Copyright (c) 2022 [David Škulj](https://github.com/dadolyner)
-
-This assignment is protected with XYZ copyright. 
-The Candidate may upload the assignment on his closed profile on GitHub (or other platform), 
-but any other reproduction and distribution of the assignment itself 
-or the assignment’s solutions without written permission of XYZ is prohibited.
-
-
-[Back To The Top](#Quotastic)
-
 ---
 
 ## Author Info
 
 - Github - [@dadolyner](https://github.com/dadolyner)
-
-[Back To The Top](#Quotastic)
