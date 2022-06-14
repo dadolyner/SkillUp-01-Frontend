@@ -72,8 +72,8 @@ $ npm start
 ## License
 MIT License
 
-Copyright (c) 2021 [skillupmentor](https://skillupmentor.com/)
-Copyright (c) 2022 [David Škulj](https://github.com/dadolyner)
+- Copyright (c) 2021 [skillupmentor](https://skillupmentor.com/)
+- Copyright (c) 2022 [David Škulj](https://github.com/dadolyner)
 
 This assignment is protected with XYZ copyright. 
 The Candidate may upload the assignment on his closed profile on GitHub (or other platform), 
